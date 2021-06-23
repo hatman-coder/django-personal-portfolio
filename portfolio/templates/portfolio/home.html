@@ -1,0 +1,42 @@
+{% extends 'portfolio/base.html' %}
+{% block content %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="utf-8">
+  <title>PORTFOLIO</title>
+</head>
+<body>
+<div class="row justify-content-center my-3">
+  <div class="col-5">
+    <img src="{% static 'portfolio/pic.jpg' %}" class="img-fluid">
+  </div>
+</div>
+<div class="row justify-content-center mb-3">
+  <div class="col-md-9 text-center">
+      <h1 id="hometext" class="font-weight-bold">Tahseen is an expert Django Web Devloper</h1>
+  </div>
+</div>
+<h2 class="mt-5"><b>Portfolio</b></h2>
+<hr>
+<div class="row">
+  {% for item in projects %}
+    <div class="col-lg-4 col-md-6">
+      {% if item.url %}
+      <a href="{{ item.url }}">
+      <img src="{{ item.image.url }}" class="image">
+      </a>
+      {% else %}
+
+      <img src="{{ item.image.url }}" class="image">
+      {% endif %}
+      <h3><b>{{ item.title }}</b></h3>
+      <p>{{ item.description }}</p>
+    </div>
+  {% endfor %}
+
+</div>
+</body>
+</html>
+{% endblock %}
